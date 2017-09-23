@@ -1,16 +1,15 @@
 ###############################
-Introduction to Smart Contracts
+Introdução a Smart Contracts
 ###############################
 
 .. _simple-smart-contract:
 
 ***********************
-A Simple Smart Contract
+Um Smart Contract simples
 ***********************
 
-Let us begin with the most basic example. It is fine if you do not understand everything
-right now, we will go into more detail later.
-
+Vamos começar com o exemplo mais básico. Não se preocupe se você não entender tudo agora, 
+entraremos em mais detalhes depois.
 Storage
 =======
 
@@ -30,24 +29,24 @@ Storage
         }
     }
 
-The first line simply tells that the source code is written for
-Solidity version 0.4.0 or anything newer that does not break functionality
-(up to, but not including, version 0.5.0). This is to ensure that the
-contract does not suddenly behave differently with a new compiler version. The keyword ``pragma`` is called that way because, in general,
-pragmas are instructions for the compiler about how to treat the
-source code (e.g. `pragma once <https://en.wikipedia.org/wiki/Pragma_once>`_).
+A primeira linha simplismente diz que o código foi escrito para o Solidity versão 0.4.0 ou mais
+novo, que não quebre funcionalidades.(até, mas não inclusindo, versão 0.5.0).
+Isso é para garantir que o contrato não tenha comportamento diferente em uma versão mais nova de compilador.
 
-A contract in the sense of Solidity is a collection of code (its *functions*) and
-data (its *state*) that resides at a specific address on the Ethereum
-blockchain. The line ``uint storedData;`` declares a state variable called ``storedData`` of
-type ``uint`` (unsigned integer of 256 bits). You can think of it as a single slot
-in a database that can be queried and altered by calling functions of the
-code that manages the database. In the case of Ethereum, this is always the owning
-contract. And in this case, the functions ``set`` and ``get`` can be used to modify
-or retrieve the value of the variable.
+A palavra chave ``pragma`` é chamada deste modo porque, em geral, pragmas são instruções
+para o compilador sobre como tratar o código fonte
+(e.g. `pragma once <https://en.wikipedia.org/wiki/Pragma_once>`_).
 
-To access a state variable, you do not need the prefix ``this.`` as is common in
-other languages.
+Um contrato, no Solidity, é uma coleção de código(são *functions*) e dados
+ (seu *estado*) que reside em um endereço específico no blockchain Ethereum.
+ A linha  ``uint storedData;`` declara uma variável de estado chamada ``storedData`` do tipo
+ ``uint`` (unsigned int de 256 bits).Você pode pensar isso como um simples campo na base de dados
+ que pode ser buscado e alterado chamando funções do código que gerenciam a base de dados.
+ 
+No caso do Ethereum, ``this.`` é sempre contrato de propriedade. E nesse caso, as funções ``set`` e ``get`` 
+podem ser usadas para modificar ou recuperar o valor da variável.
+
+Para acessar uma variável de estado, você não precisado prefixo ``this.`` como é comum em outras linguagens
 
 This contract does not do much yet (due to the infrastructure
 built by Ethereum) apart from allowing anyone to store a single number that is accessible by
