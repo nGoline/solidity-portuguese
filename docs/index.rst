@@ -36,7 +36,7 @@ Links úteis
 * `Gitter Chat <https://gitter.im/ethereum/solidity/>`_
 
 Integraçoes Disponíveis para Solidity
--------------------------------
+-------------------------------------
 
 * `Remix <https://remix.ethereum.org/>`_
     IDE baseada em Browser com compilador integrado e ambiente de tempo de execução Solidity sem componentes de servidor.
@@ -83,7 +83,7 @@ Descontinuado:
     IDE Web especializada que também provê acesso à linha de comando completa do ambiente Ethereum.
 
 Ferramentas Solidity
---------------
+--------------------
 
 * `Dapp <https://dapp.readthedocs.io>`_
     Ferramenta de build, gerenciador de pacotes e assistente de publicação para Solidity.
@@ -101,7 +101,7 @@ Ferramentas Solidity
     Gerador de Documentação para Solidity.
 
 Interpretador e Dicionários de terceiros para Solidity
------------------------------------------
+------------------------------------------------------
 
 * `solidity-parser <https://github.com/ConsenSys/solidity-parser>`_
     Interpretador de Solidity para JavaScript
@@ -110,7 +110,7 @@ Interpretador e Dicionários de terceiros para Solidity
     Dicionário de Solidity para o interpretador ANTLR 4.
 
 Documentação da Linguagem
-----------------------
+-------------------------
 
 Nas próximas páginas vamos ver um :ref:`contrato inteligente simples <simple-smart-contract>` escrito
 em Solidity seguido de conceitos básicos sobre :ref:`blockchains <blockchain-basics>`
@@ -126,7 +126,7 @@ A última e mais extensa seção vai cobrir todos os aspectos do Solidity profun
 Se você ainda tiver dúvidas você pode procurar ou perguntar no site do
 `Ethereum Stackexchange <https://ethereum.stackexchange.com/>`_
 ou acessar nosso `canal gitter <https://gitter.im/ethereum/solidity/>`_.
-Ideias para melhorar o Solidity ou essa documenta'c~ao s~ao sempre bem vindas!
+Ideias para melhorar o Solidity ou essa documentação são sempre bem vindas!
 
 Veja também a `versão em Russo (русский перевод) <https://github.com/ethereum/wiki/wiki/%5BRussian%5D-%D0%A0%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D1%81%D1%82%D0%B2%D0%BE-%D0%BF%D0%BE-Solidity>`_.
 
