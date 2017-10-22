@@ -10,9 +10,18 @@
 
 #### Pré-requisitos:
 
-1. Python (versão 3.x)
+1. Python (versão 3.x) 
+   [Python Download](https://www.python.org/downloads/)
+
 2. docutils
+   ```bash
+   pip install 'docutils'
+   ```
+  
 3. sphinx
+   ```bash
+   pip install 'sphinx'
+   ```
 
 #### Comandos
 
@@ -29,3 +38,7 @@ Caso haja qualquer erro durante a compilação você será informado do arquivo 
 C:\Users\n\Projects\solidity-portuguese\docs\introduction-to-smart-contracts.rst:495: WARNING: Explicit markup ends without a blank line; unexpected unin
 dent.
 ```
+
+#### Atualização da documentação
+
+     O site Read The Docs atualiza automaticamente a documentação assim que a versão deste repositório é alterada.
