@@ -106,7 +106,7 @@ estado do outro contrato de que você depende.
 
 
 Gas Limit e Loops
-===================
+=================
 
 Loops que não tenham um número fixo de interações, por exemplo, loops que dependem de valores armazenados, 
 tem que ser usados com muito cuidado:
@@ -121,7 +121,7 @@ Seja pormenorizado sobre tais casos na documentação dos seus contratos.
 
 
 Mandando e Recebendo Ether
-============================
+==========================
 
 - Nem os contratos nem "external accounts" atualmente podem impedir que alguém lhes envie Ether.
   Os contratos podem reagir e rejeitar uma transferência regular, mas existem formas
@@ -156,7 +156,6 @@ Mandando e Recebendo Ether
      Se você usar ``transfer`` ou ``send`` com uma verificação de valor de retorno, isso pode fornecer um
      meio do destinatário bloquear o progresso no contrato de envio. Mais uma vez, a melhor prática aqui é usar
      :ref:`"withdraw" pattern instead of a "send" pattern <withdrawal_pattern>`.
-
 
 Callstack Depth
 ===============
@@ -233,7 +232,6 @@ Detalhes Menores
   de ``0xff000001`` e com ``0x00000001``. Ambos são alimentados ao contrato e ambos irão
   parecer que o número ``1`` até ``x`` está em causa, mas ``msg.data`` irá
   parecer diferente, então, se você usar ``keccak256(msg.data)`` para qualquer coisa, você obterá resultados diferentes.
-
 
 *************
 Recomendações

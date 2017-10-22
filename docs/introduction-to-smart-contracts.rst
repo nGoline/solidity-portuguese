@@ -1,6 +1,6 @@
-################################
+###############################
 Introdução aos Smart Contracts
-################################
+###############################
 
 .. _simple-smart-contract:
 
@@ -123,7 +123,7 @@ que não permite nenhuma operação aritmética. É adequada para armazenar ende
 pares de chaves pertencentes à entidades externas. A palavra-chave ``public`` automaticamente
 gera uma função que lhe permite acessar o valor atual do estado da variável.
 Sem esta palavra-chave, outros contratos podem não ter acesso à variável.
-A função irá aparecer dessa maneira: ::
+A função irá aparecer dessa maneira:
 
     function minter() returns (address) { return minter; }
 
@@ -178,8 +178,9 @@ transações. Para escutar estes eventos, você pode usar ::
         }
     })
 
-
-Perceba como a função ``balances``, gerada automaticamente, é chamada a partir do interface do usuário. 
+ 
+ Perceba como a função ``balances``, gerada automaticamente, é chamada a partir
+ do interface do usuário. 
 
 .. index:: coin
 
@@ -216,7 +217,7 @@ saber como a Amazon´s AWZ trabalham internamente para usá-las?
 .. index:: transaction
 
 Transações
-==========
+============
 
 O blockchain é uma base de dados transacional globalmente distribuída.
 Isso significa que qualquer um pode ler as entradas do banco de dados, somente por participar da rede.
@@ -254,12 +255,6 @@ Um dos principais obstáculos a superar é o que, em termos Bitcoin, é chamado 
 O que acontece se ocorrer duas transações na rede que querem esvaziar uma conta,
 um chamado conflito?
 
-The abstract answer to this is that you do not have to care. An order of the transactions
-will be selected for you, the transactions will be bundled into what is called a "block"
-and then they will be executed and distributed among all participating nodes.
-If two transactions contradict each other, the one that ends up being second will
-be rejected and not become part of the block.
-
 A resposta abstrata à isso é que você não precisa se preocupar. Uma ordem das transações
 será selecionada para você, as transações serão empacotadas no que é chamado de "bloco" (block)
 e então eles serão executados e distribuídos entre todos os nós participantes.
@@ -270,16 +265,11 @@ Esses blocos formam uma seqüência linear no tempo e é aí que deriva o termo 
 Os blocos são adicionados à cadeia em intervalos bastante regulares - para o
 Ethereum é aproximadamente a cada 17 segundos.
 
-As part of the "order selection mechanism" (which is called "mining") it may happen that
-blocks are reverted from time to time, but only at the "tip" of the chain. The more
-blocks that are added on top, the less likely it is. So it might be that your transactions
-are reverted and even removed from the blockchain, but the longer you wait, the less
-likely it will be.
 
 Como parte do "mecanismo de seleção de pedidos" (que é chamado de (mining) "mineração"), pode acontecer 
 que os blocos são revertidos de tempos em tempos, mas apenas na "ponta" da corrente. Quanto mais 
 blocos são adicionados no topo, menos provável é. Então, pode ser que suas transações
-sejam revertidas e até mesmo removidas ddo blockchain, mas quanto mais você aguardar, menor a probabilidade.
+sejam revertidas e até mesmo removidas do blockchain, mas quanto mais você aguardar, menor a probabilidade.
 
 .. _the-ethereum-virtual-machine:
 
@@ -326,7 +316,7 @@ que pode ser modificado enviando transações que incluem Ether.
 
 .. index:: ! transaction
 
-Transactions (Transações)
+Transações (Transactions)
 =========================
 
 Cada transação (transaction) é uma mensagem que é enviada de uma conta para outra conta 
@@ -335,9 +325,6 @@ Pode incluir dados binários (sua carga útil) e Ether.
 
 Se a conta alvo contiver um código, esse código é executado e
 a carga útil é fornecida como dados de entrada.
-
-If the target account is the zero-account (the account with the
-address ``0``), the transaction creates a **new contract**.
 
 Se a conta alvo for do tipo conta zero (a conta com o
 endereço ``0``), a transação cria um novo contrato **new contract**.
@@ -371,10 +358,8 @@ Se o gás for esgotado em qualquer ponto (isto é, o saldo disponível de Gas fi
 é desencadeada uma exceção em gas (out-of-gas), que reverte todas as modificações
 feito para o estado no quadro de chamada atual.
 
-
 .. index:: ! storage, ! memory, ! stack
 
-Storage, Memory and the Stack
 Armazenamento, Memória e Pilha
 ==============================
 
@@ -408,7 +393,6 @@ sem primeiro remover o topo da pilha.
 
 .. index:: ! instruction
 
-Instruction Set
 Lista de Instruções
 ===================
 
@@ -423,7 +407,6 @@ como seu número e carimbo de tempo (timestamp).
 
 .. index:: ! message call, function;call
 
-Message Calls
 Chamadas por Mensagem
 =====================
 
@@ -508,8 +491,10 @@ quando o contrato que ele endereça realizar a operação ``selfdestruct``.
 O Ether remanescente, armazenado neste endereço, é enviado para um
 destino designado e então o armazenamento e o código é removido.
 
-.. warning:: mesmo quando o código do contrato não contém uma chamada para ``selfdestruct``, ele pode ainda realizar esta operação chamando ``delegatecall`` or ``callcode``.
+.. warning:: mesmo quando o código do contrato não contém uma chamada para ``selfdestruct``,
+  ele pode ainda realizar esta operação chamando ``delegatecall`` or ``callcode``.
 
-.. note:: A poda de contratos antigos pode ou não ser implementada pelos Clientes Ethereum. Além disso, os nós de arquivo podem optar por manter o armazenamento do contrato e código indefinidamente.
+.. note:: A poda de contratos antigos pode ou não ser implementada pelos Clientes Ethereum.
+  Além disso, os nós de arquivo podem optar por manter o armazenamento do contrato e código indefinidamente.
 
 .. note:: Atualmente **external accounts** não podem ser removidas do estado.
