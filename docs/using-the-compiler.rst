@@ -1,58 +1,63 @@
-******************
-Using the compiler
-******************
+*******************
+Usando o compilador
+*******************
 
 .. index:: ! commandline compiler, compiler;commandline, ! solc, ! linker
 
 .. _commandline-compiler:
 
-Using the Commandline Compiler
-******************************
+Usando o Comando em linha do Compilador
+***************************************
 
-One of the build targets of the Solidity repository is ``solc``, the solidity commandline compiler.
-Using ``solc --help`` provides you with an explanation of all options. The compiler can produce various outputs, ranging from simple binaries and assembly over an abstract syntax tree (parse tree) to estimations of gas usage.
-If you only want to compile a single file, you run it as ``solc --bin sourceFile.sol`` and it will print the binary. Before you deploy your contract, activate the optimizer while compiling using ``solc --optimize --bin sourceFile.sol``. If you want to get some of the more advanced output variants of ``solc``, it is probably better to tell it to output everything to separate files using ``solc -o outputDirectory --bin --ast --asm sourceFile.sol``.
+Um dos objetivos de construção do repositório Solidity é ``solc``, o compilador de linha de comando do Solidity.
+Usar ``solc --help`` fornecerá uma explicação de todas as opções. O compilador pode produzir várias saídas, que vão 
+desde binários simples e montagem em uma árvore de sintaxe abstrata (árvore de análise) até estimativas do uso de gás.
 
-The commandline compiler will automatically read imported files from the filesystem, but
-it is also possible to provide path redirects using ``prefix=path`` in the following way:
+Se você quiser compilar apenas um único arquivo, você pode executá-lo como ``solc --bin sourceFile.sol`` e ele irá imprimir o binário. 
+Antes de implantar seu contrato, ative o otimizador ao compilar usando ``solc --optimize --bin sourceFile.sol``. Se você quiser obter algumas variantes mais avançadas de saída do ``solc``, provavelmente é melhor contar para que ele saia tudo para separar arquivos usando ``solc -o outputDirectory --bin --ast --asm sourceFile.sol``.
+
+O compilador de linha de comando lê automaticamente arquivos importados do sistema de arquivos, mas
+também é possível fornecer redirecionamentos de caminho usando ``prefix=path`` da seguinte maneira:
 
 ::
 
     solc github.com/ethereum/dapp-bin/=/usr/local/lib/dapp-bin/ =/usr/local/lib/fallback file.sol
 
-This essentially instructs the compiler to search for anything starting with
-``github.com/ethereum/dapp-bin/`` under ``/usr/local/lib/dapp-bin`` and if it does not
-find the file there, it will look at ``/usr/local/lib/fallback`` (the empty prefix
-always matches). ``solc`` will not read files from the filesystem that lie outside of
-the remapping targets and outside of the directories where explicitly specified source
-files reside, so things like ``import "/etc/passwd";`` only work if you add ``=/`` as a remapping.
+Isso essencialmente instrui o compilador a procurar qualquer coisa começando com
+``github.com/ethereum/dapp-bin/`` em ``/usr/local/lib/dapp-bin`` e se não
+encontrar o arquivo lá, ele verá ``/usr/local/lib/fallback`` (o prefixo vazio
+sempre irá corresponder). ``solc`` não lerá arquivos do sistema de arquivos que ficam fora de
+os destinos de remapeamento e fora dos diretórios onde os arquivos fontes explicitamente residem, 
+então coisas como  ``import "/etc/passwd";`` só funcionam se você adicionar ``=/`` como um remapeamento.
 
-If there are multiple matches due to remappings, the one with the longest common prefix is selected.
+Se houver várias correspondências devido a remapeamentos, é selecionado aquele com o prefixo comum mais longo.
 
-For security reasons the compiler has restrictions what directories it can access. Paths (and their subdirectories) of source files specified on the commandline and paths defined by remappings are allowed for import statements, but everything else is rejected. Additional paths (and their subdirectories) can be allowed via the ``--allow-paths /sample/path,/another/sample/path`` switch.
+Por motivos de segurança, o compilador tem restrições sobre quais diretórios ele pode acessar. Os caminhos (e seus subdiretórios) dos arquivos de origem especificados na linha de comando e os caminhos definidos pelos remakes são permitidos para instruções de importação, mas tudo o resto é rejeitado. Caminhos adicionais (e seus subdiretórios) podem ser permitidos através do parâmetro ``--allow-paths /sample/path,/another/sample/path``.
 
-If your contracts use :ref:`libraries <libraries>`, you will notice that the bytecode contains substrings of the form ``__LibraryName______``. You can use ``solc`` as a linker meaning that it will insert the library addresses for you at those points:
+Se seus contratos usam :ref:`libraries <libraries>`, você notará que o bytecode contém substrings do formulário ``__LibraryName______``. Você pode usar ``solc`` como um vinculador, o que significa que ele irá inserir os endereços da biblioteca para você nesses pontos:
 
-Either add ``--libraries "Math:0x12345678901234567890 Heap:0xabcdef0123456"`` to your command to provide an address for each library or store the string in a file (one library per line) and run ``solc`` using ``--libraries fileName``.
+Ou adicione ``--libraries "Math:0x12345678901234567890 Heap:0xabcdef0123456"`` para o seu comando fornecer um endereço para cada biblioteca ou armazenar a string em um arquivo (uma biblioteca por linha) e executar ``solc`` usando ``--libraries fileName``.
 
-If ``solc`` is called with the option ``--link``, all input files are interpreted to be unlinked binaries (hex-encoded) in the ``__LibraryName____``-format given above and are linked in-place (if the input is read from stdin, it is written to stdout). All options except ``--libraries`` are ignored (including ``-o``) in this case.
+Se ``solc`` é chamado com a opção ``--link``, todos os arquivos de entrada são interpretados como binários não vinculados (codificados em hexadecimal) no ``__LibraryName____``-formato acima e estão ligados no local (se a entrada é lida a partir de stdin, está escrito para stdout). Todas as opções, exceto ``--libraries``, são ignoradas (incluindo ``-o``) neste caso.
 
-If ``solc`` is called with the option ``--standard-json``, it will expect a JSON input (as explained below) on the standard input, and return a JSON output on the standard output.
+Se ``solc`` é chamado com a opção ``--standard-json``, espera uma entrada JSON (conforme explicado abaixo) na entrada padrão e retorna uma saída JSON na saída padrão.
 
 .. _compiler-api:
 
-Compiler Input and Output JSON Description
-******************************************
 
-These JSON formats are used by the compiler API as well as are available through ``solc``. These are subject to change,
-some fields are optional (as noted), but it is aimed at to only make backwards compatible changes.
+Entrada e saída do compilador Descrição JSON
+********************************************
 
-The compiler API expects a JSON formatted input and outputs the compilation result in a JSON formatted output.
+Esses formatos JSON são usados pela API do compilador, bem como estão disponíveis através de ``solc``. Estes estão sujeitos a alterações,
+alguns campos são opcionais (como observado), mas é destinado a apenas fazer alterações compatíveis com versões anteriores.
 
-Comments are of course not permitted and used here only for explanatory purposes.
+A API do compilador espera uma entrada formatada JSON e produz o resultado da compilação em uma saída formatada JSON.
 
-Input Description
------------------
+Os comentários não são, naturalmente, permitidos e são utilizados aqui apenas para fins explicativos.
+
+
+Descrição da Entrada
+--------------------
 
 .. code-block:: none
 
@@ -162,7 +167,7 @@ Input Description
     }
 
 
-Output Description
+Descrição da Saída
 ------------------
 
 .. code-block:: none
