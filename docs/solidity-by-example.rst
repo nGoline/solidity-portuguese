@@ -10,7 +10,7 @@ Solidity by Example
 Votando
 *******
 
-O contrato seguinte é bastante complexo, mas demonstra
+O contrato seguinte é bastante complexo, mas dmonstra
 muitas das características do Solidity. Ele implementa 
 um contrato de votação. Naturalmente, o problema principal 
 do voto eletrônico é como atribuir direitos de voto a pessoa
