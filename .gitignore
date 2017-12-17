@@ -1,2 +1,3 @@
 docs/_build
-docs/utils
+docs/utils/*
+!docs/utils/SolidityLexer.py
