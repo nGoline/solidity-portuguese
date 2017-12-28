@@ -2,9 +2,14 @@
 
 .. _contract_structure:
 
-***********************
-Structure of a Contract
-***********************
+************************
+Estrutura de um contrato
+************************
+
+Contratos em Solidity são similares a classes em linguagens orientadas a objetos.
+Cada contrato pode conter declarações de :ref:`structure-state-variables`, :ref:`structure-functions`,
+:ref:`structure-function-modifiers`, :ref:`structure-events`, :ref:`structure-structs-types` and :ref:`structure-enum-types`.
+Além disso, contratos podem herdar de outros contratos.
 
 Contracts in Solidity are similar to classes in object-oriented languages.
 Each contract can contain declarations of :ref:`structure-state-variables`, :ref:`structure-functions`,
@@ -13,52 +18,51 @@ Furthermore, contracts can inherit from other contracts.
 
 .. _structure-state-variables:
 
-State Variables
-===============
+Variáveis de Estado
+===================
 
-State variables are values which are permanently stored in contract storage.
+Variáveis de estado são valores armazenados permanentemente na memória de contrato.
 
 ::
 
   pragma solidity ^0.4.0;
 
   contract SimpleStorage {
-      uint storedData; // State variable
+      uint storedData; // Variáveis de estado
       // ...
   }
 
-See the :ref:`types` section for valid state variable types and
-:ref:`visibility-and-getters` for possible choices for
-visibility.
+Veja a seção :ref:`types` para tipos válidos de variáveis de estado e 
+:ref:`visibility-and-getters` para possíveis escolhad de visibilidade.
 
 .. _structure-functions:
 
-Functions
-=========
+Funções
+=======
 
-Functions are the executable units of code within a contract.
+Funções são unidades executáveis de código dentro de um contrato.
 
 ::
 
   pragma solidity ^0.4.0;
 
   contract SimpleAuction {
-      function bid() payable { // Function
+      function bid() payable { // Função
           // ...
       }
   }
 
-:ref:`function-calls` can happen internally or externally
-and have different levels of visibility (:ref:`visibility-and-getters`)
-towards other contracts.
+:ref:`function-calls` podem acontecer internamente ou externamente
+e tem diferentes níveis de visibilidade (:ref:`visibility-and-getters`)
+para outros contratos.
 
 .. _structure-function-modifiers:
 
-Function Modifiers
-==================
+Modificadores de Função
+=======================
 
-Function modifiers can be used to amend the semantics of functions in a declarative way
-(see :ref:`modifiers` in contracts section).
+Modificadores de função podem ser usados para alterar a semântica das funções de forma declarativa
+(veja :ref:`modifiers` na seção contratos).
 
 ::
 
@@ -67,53 +71,53 @@ Function modifiers can be used to amend the semantics of functions in a declarat
   contract Purchase {
       address public seller;
 
-      modifier onlySeller() { // Modifier
+      modifier onlySeller() { // Modificador 
           require(msg.sender == seller);
           _;
       }
 
-      function abort() onlySeller { // Modifier usage
+      function abort() onlySeller { // Uso do Modificador
           // ...
       }
   }
 
 .. _structure-events:
 
-Events
-======
+Eventos
+=======
 
-Events are convenience interfaces with the EVM logging facilities.
+Eventos são interfaces de conveniência com facilidades de log na EVM.
 
 ::
 
   pragma solidity ^0.4.0;
 
   contract SimpleAuction {
-      event HighestBidIncreased(address bidder, uint amount); // Event
+      event HighestBidIncreased(address bidder, uint amount); // Evento
 
       function bid() payable {
           // ...
-          HighestBidIncreased(msg.sender, msg.value); // Triggering event
+          HighestBidIncreased(msg.sender, msg.value); // Evento Trigger
       }
   }
 
-See :ref:`events` in contracts section for information on how events are declared
-and can be used from within a dapp.
+Consulte: ref: `eventos` na seção de contratos para obter informações sobre como eventos são declarados
+e podem ser usados dentro de uma dapp.
 
 .. _structure-structs-types:
 
-Structs Types
-=============
+Tipos de Estrutura
+==================
 
-Structs are custom defined types that can group several variables (see
-:ref:`structs` in types section).
+Estruturas são tipos personalizados que podem agrupar diversas variáveis (ver
+: ref: `structs` na seção de tipos).
 
 ::
 
   pragma solidity ^0.4.0;
 
   contract Ballot {
-      struct Voter { // Struct
+      struct Voter { // Estrutura
           uint weight;
           bool voted;
           address delegate;
@@ -123,11 +127,11 @@ Structs are custom defined types that can group several variables (see
 
 .. _structure-enum-types:
 
-Enum Types
-==========
+Tipos de Enum 
+=============
 
-Enums can be used to create custom types with a finite set of values (see
-:ref:`enums` in types section).
+Enums podem ser usados para criar tipos personalizados com um conjunto finito de valores (veja
+: ref: `enums` na seção de tipos).
 
 ::
 
