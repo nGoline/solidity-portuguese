@@ -2,60 +2,58 @@
 
 .. _known_bugs:
 
-##################
-List of Known Bugs
-##################
+########################
+Lista de Bugs Conhecidos
+########################
 
-Below, you can find a JSON-formatted list of some of the known security-relevant bugs in the
-Solidity compiler. The file itself is hosted in the `Github repository
+Abaixo, você consegue encontrar em um formato JSON uma lista dos bugs relevantes para segurança, encontrados 
+no compilador do Solidity. O arquivo em si, é hospedado em um `repositório no GitHub
 <https://github.com/ethereum/solidity/blob/develop/docs/bugs.json>`_.
-The list stretches back as far as version 0.3.0, bugs known to be present only
-in versions preceding that are not listed.
+A lista se estende até a versão 0.3.0, bugs conhecidos que estão presentes somente nas
+versões precedentes a esta não estão listados.
 
-There is another file called `bugs_by_version.json
+Existe outro arquivo chamado `bugs_by_version.json
 <https://github.com/ethereum/solidity/blob/develop/docs/bugs_by_version.json>`_,
-which can be used to check which bugs affect a specific version of the compiler.
+que pode ser utilizado para checar quais bugs afetam uma versão específica do compilador.
 
-Contract source verification tools and also other tools interacting with
-contracts should consult this list according to the following criteria:
+Ferramentas de verificação de fontes de contratos e outras ferramentas que interajam com contratos
+devem consultar esta lista de acordo com os seguintes critérios:
 
- - It is mildly suspicious if a contract was compiled with a nightly
-   compiler version instead of a released version. This list does not keep
-   track of unreleased or nightly versions.
- - It is also mildly suspicious if a contract was compiled with a version that was
-   not the most recent at the time the contract was created. For contracts
-   created from other contracts, you have to follow the creation chain
-   back to a transaction and use the date of that transaction as creation date.
- - It is highly suspicious if a contract was compiled with a compiler that
-   contains a known bug and the contract was created at a time where a newer
-   compiler version containing a fix was already released.
+ - É meio suspeito que um contrato foi compilado com uma versão nightly do compilador ao invés
+   de uma versão de release. Esta lista não cobre versões unreleased ou nightly.
+ - Também é meio suspeito que um contrato foi compilado com uma versão que não seja a mais recente no 
+   momento da criação. Para contratos criados a partir de outros contratos, 
+   você deve seguir a corrente de criação até a transação e usar a data desta transação como
+   data de criação.
+ - É altamente suspeito que um contrato foi compilado com um compilador que 
+   contém um bug conhecido e o contrato foi criado quando uma nova versão de
+   compilador contendo a correção foi lançada.
 
-The JSON file of known bugs below is an array of objects, one for each bug,
-with the following keys:
+O arquivo JSON de bugs conhecidos abaixo, é um array de objetos, um para cada bug, 
+com as seguintes chaves:
 
 name
-    Unique name given to the bug
+    Nome único dado a um bug
 summary
-    Short description of the bug
+    Descrição curta do bug
 description
-    Detailed description of the bug
+    Descrição detalhada do bug
 link
-    URL of a website with more detailed information, optional
+    URL de um website com informações mais detalhadas, opcional
 introduced
-    The first published compiler version that contained the bug, optional
+    A primeira versão publicada do compilador que possuía o bug, optional
 fixed
-    The first published compiler version that did not contain the bug anymore
+    A primeira versão publicada do compilador que já não possuía mais o bug
 publish
-    The date at which the bug became known publicly, optional
+    A data em que o bug se tornou conhecido publicamente, opcional
 severity
-    Severity of the bug: low, medium, high. Takes into account
-    discoverability in contract tests, likelihood of occurrence and
-    potential damage by exploits.
+    Gravidade do bug, low (baixa), medium (média), high (alta). Leva em consideração
+    a facilidade de ser encontrado em testes de contrato, probabilidade de ocorrência e
+    danos potenciais por exploits.
 conditions
-    Conditions that have to be met to trigger the bug. Currently, this
-    is an object that can contain a boolean value ``optimizer``, which
-    means that the optimizer has to be switched on to enable the bug.
-    If no conditions are given, assume that the bug is present.
+    Condições que precisam ser atendidas para disparar o bug. Atualmente, esse objeto pode conter um valor boolean ``optimizer``, 
+    que significa que o optimizer (otimizador) precisa ser ligado para ativar o bug.
+    Se nenhuma condição for dada, suponha que o erro está presente.
 
 .. literalinclude:: bugs.json
    :language: js
