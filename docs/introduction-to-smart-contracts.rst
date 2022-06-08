@@ -129,7 +129,7 @@ A função irá aparecer dessa maneira:
 
 Naturalmente, adicionando-se a função, exatamente como está, não irá funcionar
 porque nós devemos ter a função e uma variável de estado com o mesmo nome, mas felizmente, 
-você pegou a iedia - o compilador irá entender para você.
+você pegou a ideia - o compilador irá entender para você.
 
 .. index:: mapping
 
